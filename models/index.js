@@ -8,7 +8,7 @@ const Sequelize = require('sequelize')
 var db = {}
 
 const sequelize = new Sequelize('silverspoon', 'root', 'password', {
-    host: dbHost,
+    host: 'localhost',
     dialect: 'mysql',
     dialectOptions: { ssl: false },
     pool: {
@@ -28,8 +28,15 @@ const sequelize = new Sequelize('silverspoon', 'root', 'password', {
 db.sequelize = sequelize
 db.Sequelize = Sequelize
 
-db.users = require('./users')(sequelize, Sequelize)
-db.calls = require('./posts')(sequelize, Sequelize)
+var User = require('./users')(sequelize, Sequelize)
+var Post = require('./posts')(sequelize, Sequelize)
 
+User.hasMany(Post, { foreignKey: 'borrower_id' })
+User.hasMany(Post, { foreignKey: 'lender_id' })
+
+Post.belongsTo(User, { foreignKey: 'lender_id' })
+
+db.users = User
+db.posts = Post
 
 module.exports = db

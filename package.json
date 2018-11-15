@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --mode development --port 1337 --open --config webpack.dev.js",
+    "server": "nodemon ./server.js",
     "build": "NODE_ENV=production webpack --mode production --config webpack.prod.js"
   },
   "keywords": [],
@@ -14,10 +15,17 @@
   "dependencies": {
     "@reach/router": "^1.2.1",
     "axios": "^0.17.1",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
     "history": "^4.7.2",
+    "morgan": "^1.9.1",
+    "mysql": "^2.16.0",
+    "mysql2": "^1.6.4",
+    "nodemon": "^1.18.6",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-loadable": "^5.5.0",
+    "sequelize": "^4.41.2",
     "styled-components": "^2.4.0"
   },
   "devDependencies": {
