@@ -32,8 +32,7 @@ app.get('/', function(req, res, next) {
     res.end()
 })
 
-app.get('/borrow', async function(req, res, next) {
-    console.log('hit /borrow')
+app.get('/borrow', async function(req, res) {
     const items = await db.posts.findAll({
        where: {
             status: 'open'
@@ -41,8 +40,25 @@ app.get('/borrow', async function(req, res, next) {
     })
 
     res.send(items)
-    
 })
+
+app.patch('/borrow', async function(req, res) {
+    // TODO: parse body and alter record to show 'shared' instead of 'open'
+})
+
+app.post('/lend', async function(req, res) {
+    // TODO: parse body and post record to POSTS 
+})
+
+app.post('/user', async function (req, res) {
+    // TODO: parse body and post new user
+})
+
+app.post('/user/rate/:id', async function (req, res) {
+    // TODO: parse body to get rating and alter record for user to reflect new rating
+})
+
+
 
 app.listen(8080)
 

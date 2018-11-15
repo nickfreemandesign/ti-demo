@@ -33,3 +33,13 @@ VALUES
       'can blend the toughest of foods',
       '1',
       '2');
+
+
+INSERT INTO posts 
+    (status, item, description, lender_id, borrower_id)
+VALUES 
+    ('open',
+     'fork',
+      'not for use with repositories',
+      '1',
+      null);
