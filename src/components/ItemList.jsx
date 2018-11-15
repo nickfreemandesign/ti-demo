@@ -14,7 +14,7 @@ const ItemList = (props) => {
     return (
         <ListContainer>
             {
-                props.items.map( (item, idx) => <Item item={item} key={`item-${idx}`}/> )
+                props.items.map((item, idx) => <Item item={item} borrowItem={props.borrowItem} key={`item-${idx}`}/> )
             }
         </ListContainer>
     )

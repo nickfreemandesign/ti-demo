@@ -18,19 +18,31 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       isLoggedIn: true,
+      user: {
+        user_id: 1,
+        first_name: 'nick',
+        last_name: 'freeman',
+        ratings: '[1,3,4,5,4,3,4,5,2]',
+      },
       items: []
     }
-  }
 
-  componentWillMount () {
-    
+    this.handleBorrowItem = this.handleBorrowItem.bind(this)
   }
 
   componentDidMount() {
     axios.get('http://localhost:8080/borrow').then( resp => {
-      console.log(resp.data)
       this.setState({items: resp.data})
     })
+  }
+
+  handleBorrowItem(postId) {
+    console.log('hey')
+    // axios.patch('http://localhost:8080/borrow', {
+    //   post_id: postId,
+    //   status: 'shared',
+    //   user_id: this.state.userId
+    // })
   }
 
   render() {
@@ -38,7 +50,10 @@ export default class App extends React.Component {
       <AppContent> 
         {
           this.state.isLoggedIn && this.state.items.length > 0
-            ? <Home items={this.state.items}/>
+            ? <Home 
+                items={this.state.items} 
+                user={this.state.user}
+                borrowItem={this.handleBorrowItem}/>
             : <Login/>
         }
       </AppContent>

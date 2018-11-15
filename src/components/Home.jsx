@@ -8,12 +8,14 @@ const HomeContainer = styled.div`
   width: 100%;
 `;
 
+const Title = styled.h1``
 
 const Home = (props) => {
 
     return (
         <HomeContainer>
-            <ItemList items={props.items}/>
+            <Title>{`Welcome to SilverShare, ${props.user.first_name} ${props.user.last_name}`}</Title>
+            <ItemList items={props.items} borrowItem={props.borrowItem}/>
         </HomeContainer>
     )
 }
