@@ -32,6 +32,19 @@ app.get('/', function(req, res, next) {
     res.end()
 })
 
+app.get('/borrow/:id', async function(req, res) {
+    if (!req.params.id) next()
+
+    const items = await db.posts.findAll({
+       where: {
+            status: 'shared',
+            borrower_id: req.params.id
+        }
+    })
+
+    res.send(items)
+})
+
 app.get('/borrow', async function(req, res) {
     const items = await db.posts.findAll({
        where: {
@@ -42,8 +55,10 @@ app.get('/borrow', async function(req, res) {
     res.send(items)
 })
 
-app.patch('/borrow', async function(req, res) {
+app.patch('/borrow', function(req, res) {
     // TODO: parse body and alter record to show 'shared' instead of 'open'
+    const bodyData = JSON.parse(req.body)
+    console.log(bodyData)
 })
 
 app.post('/lend', async function(req, res) {

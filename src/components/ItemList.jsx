@@ -4,7 +4,6 @@ import React from 'react';
 import Item from './Item'
 
 const ListContainer = styled.div`
-  height: 1000px;
   width: 100%;
 `;
 
@@ -14,7 +13,12 @@ const ItemList = (props) => {
     return (
         <ListContainer>
             {
-                props.items.map((item, idx) => <Item item={item} borrowItem={props.borrowItem} key={`item-${idx}`}/> )
+                props.items.map((item, idx) => {
+                    return <Item item={item} 
+                                 toggleShare={props.toggleShare} 
+                                 key={`item-${idx}`}
+                                 btn={props.btn}/> 
+                })
             }
         </ListContainer>
     )

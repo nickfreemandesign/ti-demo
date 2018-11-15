@@ -29,7 +29,7 @@ const Item = (props) => {
         <ItemContainer>
            <ItemTitle>{`Item: ${props.item.item}`}</ItemTitle>
            <ItemDesc>{`Description: ${props.item.description}`}</ItemDesc>
-           <BorrowBtn onClick={props.borrowItem}>borrow</BorrowBtn>
+           <BorrowBtn onClick={()=> {props.toggleShare(props.item)}}>{props.btn}</BorrowBtn>
         </ItemContainer>
     )
 }

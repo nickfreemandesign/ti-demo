@@ -43,3 +43,12 @@ VALUES
       'not for use with repositories',
       '1',
       null);
+
+INSERT INTO posts 
+    (status, item, description, lender_id, borrower_id)
+VALUES 
+    ('shared',
+     'peeler',
+      'this peeler is a slicy dealer',
+      '2',
+      '1');

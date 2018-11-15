@@ -24,20 +24,28 @@ export default class App extends React.Component {
         last_name: 'freeman',
         ratings: '[1,3,4,5,4,3,4,5,2]',
       },
-      items: []
+      openItems: [],
+      myItems: []
     }
 
-    this.handleBorrowItem = this.handleBorrowItem.bind(this)
+    this.handleToggleShare = this.handleToggleShare.bind(this)
   }
 
   componentDidMount() {
+
+    const userId = this.state.user.user_id
+
     axios.get('http://localhost:8080/borrow').then( resp => {
-      this.setState({items: resp.data})
+      this.setState({openItems: resp.data})
+    })
+
+    axios.get(`http://localhost:8080/borrow/${userId}`).then( resp => {
+      this.setState({myItems: resp.data})
     })
   }
 
-  handleBorrowItem(postId) {
-    console.log('hey')
+  handleToggleShare(item) {
+    console.log(item)
     // axios.patch('http://localhost:8080/borrow', {
     //   post_id: postId,
     //   status: 'shared',
@@ -49,11 +57,12 @@ export default class App extends React.Component {
     return (
       <AppContent> 
         {
-          this.state.isLoggedIn && this.state.items.length > 0
+          this.state.isLoggedIn
             ? <Home 
-                items={this.state.items} 
+                myItems={this.state.myItems} 
+                openItems={this.state.openItems} 
                 user={this.state.user}
-                borrowItem={this.handleBorrowItem}/>
+                toggleShare={this.handleToggleShare}/>
             : <Login/>
         }
       </AppContent>
