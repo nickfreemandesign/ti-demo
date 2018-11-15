@@ -1,3 +1,5 @@
+USE silvershare;
+
 DROP TABLE IF EXISTS
 
 users,
@@ -5,36 +7,27 @@ posts
 
 CASCADE;
 
-CREATE TABLE "users" (
-	"user_id" serial NOT NULL,
-	"first_name" varchar NOT NULL,
-	"last_name" varchar NOT NULL,
-	"email" varchar NOT NULL,
-	"password" varchar NOT NULL,
-	"rantings" varchar NOT NULL
-	"created_at" TIMESTAMP NOT NULL,
-	"updated_at" TIMESTAMP NOT NULL,
-	CONSTRAINT users_pk PRIMARY KEY ("user_id")
-) WITH (
-  OIDS=FALSE
+CREATE TABLE `users` (
+	`user_id` INT NOT NULL AUTO_INCREMENT,
+	`first_name` varchar(255) NOT NULL,
+	`last_name` varchar(255) NOT NULL,
+	`email` varchar(255) NOT NULL,
+	`password` varchar(255) NOT NULL,
+	`ratings` varchar(255) NOT NULL,
+	PRIMARY KEY (`user_id`)
 );
 
-
-
-CREATE TABLE "posts" (
-	"post_id" serial NOT NULL,
-	"item" varchar NOT NULL,
-	"description" varchar NOT NULL,
-	"lender_id" integer NOT NULL,
-	"borrower_id" integer NOT NULL,
-	"created_at" TIMESTAMP NOT NULL,
-	"updated_at" TIMESTAMP,
-	CONSTRAINT posts_pk PRIMARY KEY ("post_id")
-) WITH (
-  OIDS=FALSE
+CREATE TABLE `posts` (
+	`post_id` INT NOT NULL AUTO_INCREMENT,
+	`status` varchar(255) NOT NULL,
+	`item` varchar(255) NOT NULL,
+	`description` varchar(255) NOT NULL,
+	`lender_id` INT NOT NULL,
+	`borrower_id` INT,
+	PRIMARY KEY (`post_id`)
 );
 
+ALTER TABLE `posts` ADD CONSTRAINT `posts_fk0` FOREIGN KEY (`lender_id`) REFERENCES `users`(`user_id`);
 
+ALTER TABLE `posts` ADD CONSTRAINT `posts_fk1` FOREIGN KEY (`borrower_id`) REFERENCES `users`(`user_id`);
 
-ALTER TABLE "posts" ADD CONSTRAINT "posts_fk0" FOREIGN KEY ("borrower_id") REFERENCES "users"("user_id");
-ALTER TABLE "posts" ADD CONSTRAINT "posts_fk0" FOREIGN KEY ("lender_id") REFERENCES "users"("user_id");
