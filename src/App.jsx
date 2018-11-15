@@ -11,6 +11,12 @@ export default class App extends React.Component {
     this.state = {}
   }
 
+  componentDidMount() {
+    axios.get('http://localhost:8080').then( resp => {
+      console.log(resp.data)
+    })
+  }
+
   render() {
     return (<div>Cedrus Challenge</div>)
   }
