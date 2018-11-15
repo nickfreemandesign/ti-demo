@@ -20,16 +20,9 @@ module.exports = (sequelize, DataTypes) => {
                 type: Sequelize.STRING,
                 allowNull: true,
                 defaultValue: null
-            },
-            borrower_id: {
-                type: Sequelize.INTEGER,
-                allowNull: true,
-                defaultValue: null
-            },
-            lender_id: {
-                type: Sequelize.INTEGER,
-                allowNull: false
             }
+            //borrower_id
+            //lender_id
         },
         {
             timestamps: true,

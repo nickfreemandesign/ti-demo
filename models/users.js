@@ -36,6 +36,20 @@ module.exports = (sequelize, DataTypes) => {
                 type: Sequelize.BOOLEAN,
                 allowNull: false,
                 defaultValue: true
+            },
+            created_at: {
+                type: Sequelize.DATE,
+                validate: {
+                    isDate: true
+                },
+                allowNull: false
+            },
+            updated_at: {
+                type: Sequelize.DATE,
+                validate: {
+                    isDate: true
+                },
+                allowNull: false
             }
         },
         {
