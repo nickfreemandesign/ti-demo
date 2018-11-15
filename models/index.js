@@ -7,7 +7,7 @@ const Sequelize = require('sequelize')
 // Initialize database settings
 var db = {}
 
-const sequelize = new Sequelize('silverspoon', 'root', 'password', {
+const sequelize = new Sequelize('silvershare', 'root', 'password', {
     host: 'localhost',
     dialect: 'mysql',
     dialectOptions: { ssl: false },

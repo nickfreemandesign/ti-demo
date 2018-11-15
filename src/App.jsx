@@ -12,7 +12,7 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:8080').then( resp => {
+    axios.get('http://localhost:8080/borrow').then( resp => {
       console.log(resp.data)
     })
   }

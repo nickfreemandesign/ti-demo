@@ -25,9 +25,12 @@ module.exports = (sequelize, DataTypes) => {
                 type: Sequelize.STRING,
                 allowNull: true,
                 defaultValue: null
-            }
+            },
             //borrower_id
             //lender_id
+        },
+        {
+            timestamps: false
         }
     )
 }

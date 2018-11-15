@@ -32,6 +32,18 @@ app.get('/', function(req, res, next) {
     res.end()
 })
 
+app.get('/borrow', async function(req, res, next) {
+    console.log('hit /borrow')
+    const items = await db.posts.findAll({
+       where: {
+            status: 'open'
+        }
+    })
+
+    res.send(items)
+    
+})
+
 app.listen(8080)
 
 
